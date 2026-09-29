@@ -19,8 +19,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import JsonResponse
+
+def api_home(request):
+    return JsonResponse({
+        "status": "online",
+        "message": "JobPortal Backend API is running successfully!",
+        "endpoints": {
+            "jobs": "/api/jobs/",
+            "admin": "/admin/"
+        }
+    })
 
 urlpatterns = [
+    path("", api_home, name="home"),
     path("admin/", admin.site.urls),
     path("api/", include("jobs.urls")),
 ]
