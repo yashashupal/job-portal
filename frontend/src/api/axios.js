@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-export const SERVER_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000/api').replace(/\/api\/?$/, '');
+// Default to live Render backend if VITE_API_URL is not provided
+export const SERVER_BASE_URL = (
+  import.meta.env.VITE_API_URL || 'https://job-portal-backend-46no.onrender.com/api'
+).replace(/\/api\/?$/, '');
+
 export const API_BASE_URL = `${SERVER_BASE_URL}/api`;
 
 const api = axios.create({
